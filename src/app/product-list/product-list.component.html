@@ -1,0 +1,41 @@
+<h2>Products</h2>
+
+<p>
+  <ngb-alert *ngIf="isUpdating" [dismissible]="false">
+    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+  </ngb-alert>
+</p>
+
+<label class="btn-primary" ngbButtonLabel>
+  <input type="button" ngbButton (click)="onAdd()"> Add
+</label>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">name</th>
+      <th scope="col">price</th>
+      <th scope="col">description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prod of $productList | async; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{ prod.id }}
+      </td>
+      <td>
+        {{ prod.name }}
+      </td>
+      <td>{{ prod.price | number }}</td>
+      <td>{{ prod.description  }}</td>
+      <td>
+        <label class="btn-primary" ngbButtonLabel>
+          <input type="button" ngbButton (click)="onUpdate(prod)"> Edit
+        </label>
+      </td>
+    </tr>
+  </tbody>
+</table>
